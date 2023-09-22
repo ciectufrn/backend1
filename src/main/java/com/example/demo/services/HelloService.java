@@ -12,25 +12,26 @@ public class HelloService {
     @Autowired
     private RequisicaoRepository requisicaoRepository;
 
-    Integer quantidadeGets = 0;
-    Integer quantidadePosts = 0;
-    Integer quantidadePuts = 0;
-    Integer quantidadeDeletes = 0;
-
     public Integer quantidadeGets() {
         Requisicao requisicao = requisicaoRepository.getReferenceById(1);
+        Integer getsDoBanco = requisicao.getGets();
+        requisicao.setGets(getsDoBanco + 1);
+        requisicaoRepository.save(requisicao);
         return requisicao.getGets();
     }
 
     public Integer quantidadePosts() {
-        return ++quantidadePosts;
+        Requisicao requisicao = requisicaoRepository.getReferenceById(1);
+        return requisicao.getPosts();
     }
 
     public Integer quantidadePuts() {
-        return ++quantidadePuts;
+        Requisicao requisicao = requisicaoRepository.getReferenceById(1);
+        return requisicao.getPuts();
     }
 
     public Integer quantidadeDeletes() {
-        return ++quantidadeDeletes;
+        Requisicao requisicao = requisicaoRepository.getReferenceById(1);
+        return requisicao.getDeletes();
     }
 }
