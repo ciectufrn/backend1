@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Curso;
 import com.example.demo.services.CursoService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
 @RequestMapping("/curso")
@@ -17,8 +18,8 @@ public class CursoController {
     CursoService cursoService;
     
     @GetMapping("/{idCurso}")
-    public String getCurso(@PathVariable Integer idCurso) {
+    public Curso getCurso(@PathVariable Integer idCurso) throws JsonProcessingException {
         Curso curso = cursoService.getCurso(idCurso);
-        return curso.toString();
+        return curso;
     }
 }
