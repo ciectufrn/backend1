@@ -7,8 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import lombok.Getter;
 import lombok.Setter;
+
+@NamedQuery(name = "Turma.getTurmasPorCurso", query = "SELECT t FROM Turma t WHERE t.curso.id=:idCurso")
 
 @Entity
 @Getter @Setter

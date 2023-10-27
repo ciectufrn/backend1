@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,7 @@ public class TurmaService {
         turmaRepository.deleteById(idTurma);
     }
 
-
+    public List<Turma> getTurmasPorCurso(Integer idCurso){
+        return turmaRepository.getTurmasPorCurso(idCurso);
+    }
 }

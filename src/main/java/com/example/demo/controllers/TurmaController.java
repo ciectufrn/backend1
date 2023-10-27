@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,5 +41,11 @@ public class TurmaController {
     @DeleteMapping("/{idTurma}")
     public void removerTurma(@PathVariable Integer idTurma) {
         turmaService.remover(idTurma);
+    }
+
+    @GetMapping("/curso/{idCurso}")
+    public List<Turma> getTurmasPorCurso(@PathVariable Integer idCurso) {
+        List<Turma> turmas = turmaService.getTurmasPorCurso(idCurso);
+        return turmas;
     }
 }
