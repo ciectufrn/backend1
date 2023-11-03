@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,22 +22,26 @@ public class CursoController {
     CursoService cursoService;
     
     @GetMapping("/{idCurso}")
+    @Secured(value = { "ROLE_ADMIN", "ROLE_GESTOR" })
     public Curso getCurso(@PathVariable Integer idCurso) {
         Curso curso = cursoService.getCurso(idCurso);
         return curso;
     }
 
     @PostMapping
+    @Secured(value = { "ROLE_GESTOR" })
     public void cadastrarCurso(@RequestBody Curso curso) {
         cursoService.salvar(curso);
     }
 
     @PutMapping
+    @Secured(value = { "ROLE_GESTOR" })
     public void atualizarCurso(@RequestBody Curso curso) {
         cursoService.atualizar(curso);
     }
 
     @DeleteMapping("/{idCurso}")
+    @Secured(value = { "ROLE_GESTOR" })
     public void removerCurso(@PathVariable Integer idCurso) {
         cursoService.remover(idCurso);
     }
